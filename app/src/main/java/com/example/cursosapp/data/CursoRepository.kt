@@ -24,9 +24,7 @@ class CursoRepository(
         ignoreUnknownKeys = true
     }
 
-    /**
-     * Lista de cursos armazenada no DataStore.
-     */
+    // Lista de cursos armazenada no DataStore.
     val cursos: Flow<List<Curso>> =
         context.cursosDataStore.data.map { preferencias ->
             val conteudo: String? = preferencias[chaveCursos]
@@ -42,9 +40,7 @@ class CursoRepository(
             }
         }
 
-    /**
-     * Salva a lista completa de cursos.
-     */
+    // Salva a lista completa de cursos.
     private suspend fun salvarLista(lista: List<Curso>) {
 
         context.cursosDataStore.edit { preferencias ->
@@ -52,9 +48,7 @@ class CursoRepository(
         }
     }
 
-    /**
-     * Adiciona um novo curso.
-     */
+    // Adiciona um novo curso.
     suspend fun adicionarCurso(curso: Curso) {
 
         val listaAtual: List<Curso> = cursos.first()
@@ -64,9 +58,7 @@ class CursoRepository(
         )
     }
 
-    /**
-     * Atualiza um curso existente.
-     */
+    // Atualiza um curso existente.
     suspend fun atualizarCurso(curso: Curso) {
 
         val listaAtual: List<Curso> = cursos.first()
@@ -83,9 +75,8 @@ class CursoRepository(
         salvarLista(novaLista)
     }
 
-    /**
-     * Exclui um curso pelo ID.
-     */
+    // Exclui um curso pelo ID.
+
     suspend fun excluirCurso(id: Long) {
 
         val listaAtual: List<Curso> = cursos.first()
